@@ -4,4 +4,34 @@
 
 <h1>My tasks</h1>
 
-My tasks list
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Created</th>
+			<th>Completed</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var task in tasks)
+		{
+			<tr>
+				<td>@task.Id</td>
+				<td>@task.Title</td>
+				<td>@task.Description</td>
+				<td>@task.CreatedDate</td>
+				<td>@task.FinishDate</td>
+			</tr>
+		}
+	</tbody>
+</table>
+@code {
+	IEnumerable<TaskItem> tasks = new List<TaskItem>
+	{
+		new TaskItem {Id = 1, Title="Pet the cat", Description="100 times", CreatedDate=DateTime.Now, FinishDate=DateTime.Today.AddDays(1)},
+		new TaskItem {Id = 2, Title="Finish this course", Description="Or not?", CreatedDate=DateTime.Now, FinishDate= new DateTime(2024, 12, 31)},
+		new TaskItem {Id = 3, Title="Philosophy homework", Description="Watch the movie \"Inception\"", CreatedDate=DateTime.Now, FinishDate=new DateTime(2024, 9, 26)},
+	};
+}
